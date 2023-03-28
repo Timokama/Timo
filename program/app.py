@@ -89,5 +89,5 @@ def delete(student_id):
 
 @app.route('/about')
 def about():
-    student = Student.query.all()
-    return render_template('about.html', student=student)
+    students = Student.query.all()
+    return render_template('about.html', students=students)
