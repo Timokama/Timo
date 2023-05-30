@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span class="title"><h1>{% block title %} The Details Page {% endblock %}</h1></span>
+<div class="content">
+    <a href="{{url_for('register.create')}}">Create new Member</a>
+        <h2>Members</h2>
+        {% for regst in register %}
+            <div class="register">
+            <p><b># {{ regst.id }}</b></p>
+            <p class="title">
+                <a href="#">{{ regst.firstname}} {{ regst.lastname }}</a>
+            </p>
+            <div class="content">
+                <p><b>{{ regst.email }}</b></p>
+                <p><b>age {{ regst.age }}</b></p>
+                <p><b>date: {{ regst.created_at }}</b></p>
+            </div>
+            <pre>Ksh. {{ regst.deposit.amount}} </pre>
+            
+            
+            <hr>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

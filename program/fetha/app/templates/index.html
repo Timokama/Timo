@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <span class="title"><h1>{% block title %} Home Page {% endblock %}</h1></span>
+    </b>
+    <div>
+        <img style="height: 450px;" scr="{{ user_image }}" alt="Gamerock"></img>
+        <hr>
+
+        <a href="{{ url_for('register.index')}}">Register</a>
+    </div>
+{% endblock %}

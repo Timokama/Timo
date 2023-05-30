@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Create</title></head>
+    <body>
+    <h1 style="width: 100%">{% block title %} Add a New Member {% endblock %}</h1>
+    <form method="post">
+        <p>
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname"
+                   placeholder="First Name">
+            </input>
+        </p>
+
+        <p>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname"
+                   placeholder="Last Name">
+            </input>
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email"
+                   placeholder="Member email">
+            </input>
+        </p>
+
+        <p>
+            <label for="age">Age</label>
+            <input type="number" name="age"
+                   placeholder="Age">
+            </input>
+        </p>
+
+        <p>
+            <label for="amount">Enter Amount</label>
+            <input type="number" name="amount"
+                   placeholder="Ksh. ">
+            </input>
+        </p>
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+    </body>
+
+</html>
