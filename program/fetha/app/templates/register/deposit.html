@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span class="title"><h1>{% block title %} The Member Page {% endblock %}</h1></span>
+<div class="content">
+    <div class="register">
+        <p><b># {{ deposit.id }}</b></p>
+        {% for family in deposit.family %}
+        <p class="title">
+            {{ family.firstname}} {{ family.lastname }}
+        </p>
+        <div class="content">
+            <p>Date of birth {{ family.date_of_birth }} </br></p>
+            <p>Created at: {{ family.created_at }} </p>
+        </div>
+        {% endfor %}
+        <pre>Ksh. {{ deposit.amount}} </pre>
+
+        <hr>
+        <form method="POST"
+                action="{{ url_for('deposit.delete',
+                                    depo_id=deposit.id) }}">
+                <input type="submit" value="Delete Member"
+                    onclick="return confirm('Are you sure you want to delete this entry?')">
+            </form>
+        <a href="{{url_for('register.index')}}"><button>Home</button></a>
+    </div>
+</div>
+{% endblock %}

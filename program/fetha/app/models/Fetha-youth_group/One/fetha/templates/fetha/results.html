@@ -1,0 +1,8 @@
+<h1> {{ person.name }}</h1>
+
+<ul>
+{% for group in person.group_set.all %}
+    <li>{{ group.name }} -- {{ group.votes }} vote{{ group.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+<a href="{% url 'fetha:detail' person.id %}"> Vote again?<a>

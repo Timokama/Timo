@@ -19,16 +19,9 @@
         </p>
 
         <p>
-            <label for="email">Email</label>
-            <input type="email" name="email"
-                   placeholder="Member email">
-            </input>
-        </p>
-
-        <p>
-            <label for="age">Age</label>
-            <input type="number" name="age"
-                   placeholder="Age">
+            <label for="date_of_birth">Date of firth</label>
+            <input type="date" name="date_of_birth"
+                   placeholder="Date of birth">
             </input>
         </p>
 
@@ -39,7 +32,10 @@
             </input>
         </p>
         <p>
-            <button type="submit">Submit</button>
+            <!-- <button type="submit"><a href="{{url_for('register.index')}}">Save and close </a></button> -->
+            <button type="submit">Save and Continue</button>
+            
+            <button><a href="{{url_for('register.index')}}">cancel</a></button>
         </p>
     </form>
     </body>

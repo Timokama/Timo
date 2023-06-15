@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span class="title"><h1>{% block title %} Family {% endblock %}</h1></span>
+<div class="content">
+    <a href="{{url_for('register.create')}}">Create new Member</a>
+    </br>
+    <div class="content">
+        <p><b>Ksh. {{ family.amount }}</b></p>
+    </div>
+
+        {% for farther in family.family %}
+        <div class="register">
+            <p>Name: {{ farther.firstname}} {{ farther.lastname }}</p>
+            <p>Date of birth: {{ farther.date_of_birth }}</p>
+            <p>Created at: {{ farther.created_at }}</p>
+        </div>
+            
+        <hr>
+        
+        <div class="register">
+            <!-- <h3>Family</h3> -->
+        <h1>Wife</h1>
+        <div>
+        {% for wife in farther.wife %}
+            <p>Name: {{ wife.firstname }} {{ wife.lastname }}</p>
+            <p>Date of birth: {{ wife.date_of_birth}}</p>
+            <hr>
+            </div>
+            <div>
+            {% for child in wife.child %}
+            </br><h1>Children</h1>
+            <p>Name: {{ child.firstname }} {{ child.lastname }}</p>
+            <p>Date of birth: {{ child.date_of_birth}}</p>
+            </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+    </div>
+{% endblock %}

@@ -19,12 +19,18 @@ class Student(db.Model):
     lastname = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
     age = db.Column(db.Integer)
+    #hostel =db.relationship('Hostels', backref='student')
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
     bio = db.Column(db.Text)
 
     def __repr__(self):
         return f'<Student {self.firstname}>'
+
+# class Hostels(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     room = db.Column(db.Text)
+#     post_id = db.Column(db.Integer, db.ForeignKey('student.id'))
 
 @app.route('/')
 def index():

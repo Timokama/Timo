@@ -3,24 +3,30 @@
 {% block content %}
 <span class="title"><h1>{% block title %} The Details Page {% endblock %}</h1></span>
 <div class="content">
-    <a href="{{url_for('register.create')}}">Create new Member</a>
-        <h2>Members</h2>
-        {% for regst in register %}
+    <a href="{{url_for('register.create')}}"><button>Create new Member</button></a>
+        <h2>Members</h2>        
             <div class="register">
-            <p><b># {{ regst.id }}</b></p>
+            {% for depo in deposit %}
+            <p><b># {{ depo.id }}</b></p>
+            <br>
+            {% for register in  depo.family %}
             <p class="title">
-                <a href="#">{{ regst.firstname}} {{ regst.lastname }}</a>
+                {{ register.firstname}} {{ register.lastname }}
             </p>
+            
             <div class="content">
-                <p><b>{{ regst.email }}</b></p>
-                <p><b>age {{ regst.age }}</b></p>
-                <p><b>date: {{ regst.created_at }}</b></p>
+                <p>Date of birth {{ register.date_of_birth }} </br></p>
+                <p>Created at: {{ register.created_at }} </br></p>
             </div>
-            <pre>Ksh. {{ regst.deposit.amount}} </pre>
-            
-            
+            {% endfor %}
+            <pre>Ksh. {{ depo.amount }} </pre>
             <hr>
+            <a href="{{url_for('register.deposit', depo_id = depo.id)}}">
+                <button>Profile</button>
+            </a>
             </div>
+            
+            
         {% endfor %}
     </div>
 {% endblock %}

@@ -1,0 +1,12 @@
+<form action="{% url 'fetha:vote' person.id %}" method='post'>
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ person.name }}</h1></legend>
+    {% if erro_message %}<p><strong>{{ erro_message }}</strong></p>{% endif %}
+    {% for group in person.group_set.all %}
+        <input type="radio" name="group" id="group{{ forloop.counter }}" value="{{ group.id }}">
+        <label for="group{{ forloop.counter }}">{{ group.name }}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Vote">
+</form>

@@ -23,6 +23,9 @@ def create_app(config_class=Config):
     from app.deposit import bp as questions_bp
     app.register_blueprint(questions_bp, url_prefix='/deposit')
 
+    from app.family import bp as family_bp
+    app.register_blueprint(family_bp, url_prefix='/family')
+
     app.config['UPLOAD_FOLDER'] = PHOTOS
     @app.route('/index')
     def show_index():

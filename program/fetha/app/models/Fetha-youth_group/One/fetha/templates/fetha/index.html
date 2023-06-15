@@ -1,0 +1,11 @@
+{% latest_person_list %}
+    <ul>
+        {% for person in latest_person_list %}
+            <li><a href="{% url 'fetha:detail' person.id %}/">{{ person.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'fetha/style.css' %}">

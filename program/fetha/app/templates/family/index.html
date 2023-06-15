@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span class="title"><h1>{% block title %} Family {% endblock %}</h1></span>
+<div class="content">
+    <a href="{{url_for('register.create')}}">Create new Member</a>
+        <h2>Farther</h2>
+            <div class="title">
+            {% for money in family %}
+            <p>{{ money.id }}</p>
+
+            {% for farther in money.family %}
+            <p class="title">
+                <a href="{{url_for('family.family', depo_id = farther.id)}}">{{ farther.firstname}} {{ farther.lastname }}</a>
+            </p>
+            <div class="content">
+                <p>Date of birth {{ farther.date_of_birth }}</p>
+                <p>date: {{ farther.created_at }}</p>
+            </div>
+            <p> Ksh. {{ money.amount }}</p>
+            <hr>
+            {% endfor %}
+            
+        {% endfor %}
+    </div>
+{% endblock %}
