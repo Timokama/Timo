@@ -7,16 +7,17 @@ from app.models.deposit import Deposit
 @bp.route('/')
 def index():
     deposit = Deposit.query.all()
+    # register = Register.query.all()
 
     return render_template('register/index.html', deposit = deposit)
 
 @bp.route('/<int:depo_id>/')
 def deposit(depo_id):
+    depo = Deposit.query.get_or_404(depo_id)
     register = Register.query.get_or_404(depo_id)
     # depo_id = register.deposit.id
-    # depo = Deposit.query.got_or_404(depo_id)
-
-    return render_template('deposit/deposit.html', register=register)
+    
+    return render_template('deposit/deposit.html', register=register, deposit = depo)
 
 @bp.post('/<int:depo_id>/delete')
 def delete(depo_id):

@@ -21,3 +21,18 @@ def family(depo_id):
     # depo = Deposit.query.got_or_404(depo_id)
 
     return render_template('family/family.html', family = family)
+
+@bp.route('/<int:depo_id>/', methods=('GET', 'POST'))
+def wife(depo_id):
+    register = Register.query.get_or_404(depo_id)
+    if request.method == 'POST':
+        wife = Wife(
+            firstname=request.form['firstname'],
+            lastname=request.form['lastname'],
+            date_of_birth=request.form['date_of_birth'],
+            register = register
+        )
+        db.session.add(wife)
+        db.session.commit()
+        return redirect(url_for('family.family', depo_id=register.id))
+    return render_template('family/create_wife.html', register=register)

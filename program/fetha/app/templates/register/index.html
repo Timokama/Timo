@@ -5,16 +5,15 @@
 <div class="content">
     <a href="{{url_for('register.create')}}"><button>Create new Member</button></a>
         <h2>Members</h2>        
-            <div class="register">
-            {% for depo in deposit %}
-            <p><b># {{ depo.id }}</b></p>
-            <br>
+        {% for depo in deposit %}    
+        <div class="register">
+            
+            <p><b># {{ depo.id }}</b></p><br>
+            
             {% for register in  depo.family %}
-            <p class="title">
+            <p class="content">
                 {{ register.firstname}} {{ register.lastname }}
             </p>
-            
-            <div class="content">
                 <p>Date of birth {{ register.date_of_birth }} </br></p>
                 <p>Created at: {{ register.created_at }} </br></p>
             </div>
@@ -24,9 +23,6 @@
             <a href="{{url_for('register.deposit', depo_id = depo.id)}}">
                 <button>Profile</button>
             </a>
-            </div>
-            
-            
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
 {% endblock %}

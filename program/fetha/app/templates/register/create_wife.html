@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Create</title></head>
+    <body>
+    <h1 style="width: 100%">{% block title %} Add a New Member {% endblock %}</h1>
+    {% for family in family.family%}
+    <p>{{family.id}}</p>
+    <p>{{family.firstname}}</p>
+    <p>{{family.lastname}}</p>
+    <p>{{family.created_at}}</p>
+    {% endfor%}
+    <form method="post">
+        <p>
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname"
+                   placeholder="First Name">
+            </input>
+        </p>
+
+        <p>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname"
+                   placeholder="Last Name">
+            </input>
+        </p>
+
+        <p>
+            <label for="date_of_birth">Date of firth</label>
+            <input type="date" name="date_of_birth"
+                   placeholder="Date of birth">
+            </input>
+        </p>
+
+        <p>
+            <!-- <button type="submit" href="{{url_for('register.index')}}">Save and close </button> -->
+            <button type="submit">Save and Continue</button>
+            
+            <button><a href="{{url_for('register.index')}}">cancel</a></button>
+        </p>
+    </form>
+    </body>
+
+</html>
