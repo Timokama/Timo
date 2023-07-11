@@ -1,41 +1,70 @@
-{% extends 'base.html' %}
-
 {% block content %}
+<a href="{{url_for('family.index')}}"><input type="submit" value="Back"></a>
 <span class="title"><h1>{% block title %} Family {% endblock %}</h1></span>
 <div class="content">
-    <a href="{{url_for('register.create')}}">Create new Member</a>
+    <a href="{{url_for('register.create')}}"><button>Create New Member</button></a>
     </br>
     <div class="content">
         <p><b>Ksh. {{ family.amount }}</b></p>
     </div>
-
-        {% for farther in family.family %}
+    <form method="POST"
+            action="{{ url_for('family.delete_family',
+                                depo_id = register.id) }}">
+            <input type="submit" value="Delete Family"
+                onclick="return confirm('Are you sure you want to delete this entry?')">
+    </form>
+        
         <div class="register">
-            <p>Name: {{ farther.firstname}} {{ farther.lastname }}</p>
-            <p>Date of birth: {{ farther.date_of_birth }}</p>
-            <p>Created at: {{ farther.created_at }}</p>
-        </div>
+            <p>Name: {{ register.firstname}} {{ register.lastname }}</p>
+            <p>Date of birth: {{ register.date_of_birth }}</p>
+            <p>Created at: {{ register.created_at }}</p>
+            <a href="{{url_for('family.date_of_b',depo_id=register.id, d_of_birth = register.date_of_birth)}}"><button>Age</button></a>
+            <a href="{{url_for('family.edit',depo_id=register.id)}}"><button>Edit Name</button></a>
+            <a href="{{ url_for('family.create_wife', depo_id=register.id)}}"><button>New Wife</button></a>
+            <a href="{{ url_for('register.create_child', depo_id=register.id)}}"><button>New Child</button></a>
+
+            {% for child in register.child %}
+            <hr>
+            </br><p>ChildId: {{child.id}}</p>
+            <p>Name: {{ child.firstname }} {{ child.lastname }}</p>
+            <p>Date of birth: {{ child.date_of_birth}}</p>
+            <a href="{{url_for('family.editchild',depo_id=register.id, child_id = child.id )}}"><button>Edit child</button></a>
             
-        <hr>
+    
+            {% endfor %}
+        </div>
         
         <div class="register">
             <!-- <h3>Family</h3> -->
-        <h1>Wife</h1>
-        <div>
-        {% for wife in farther.wife %}
+        <div class="register">
+        {% for wife in register.wife %}
+        <p>WifeId: {{ wife.id }} </p>
             <p>Name: {{ wife.firstname }} {{ wife.lastname }}</p>
             <p>Date of birth: {{ wife.date_of_birth}}</p>
             <hr>
-            </div>
-            <div>
+            <a href="{{ url_for('family.edit_wife',
+            depo_id = register.id, edit_id=wife.id) }}"><button onclick="return confirm('Are you sure you want to edit this entry?')">Edit Wife</button></a>
+
+            <a href="{{ url_for('family.create_child', depo_id=register.id, wife_id = wife.id)}}"><button> New Child</button></a>
+            </form>
+            <form method="POST"
+                action="{{ url_for('family.delete',
+                                    depo_id = register.id, del_id=wife.id) }}">
+                <input type="submit" value="Delete Wife"
+                    onclick="return confirm('Are you sure you want to delete this entry?')">
+            </form>
+        </div>
+            <div class="register">
             {% for child in wife.child %}
-            </br><h1>Children</h1>
+            <hr>
+            </br><p>ChildId: {{child.id}}</p>
             <p>Name: {{ child.firstname }} {{ child.lastname }}</p>
             <p>Date of birth: {{ child.date_of_birth}}</p>
+            <a href="{{url_for('family.edit_child',depo_id=register.id, edit_id = wife.id, child_id = child.id )}}"><button>Edit child</button></a>
             </div>
-            </div>
+    
             {% endfor %}
-            {% endfor %}
-            {% endfor %}
-    </div>
+        </div>
+        {% endfor %}
+        </div>
 {% endblock %}

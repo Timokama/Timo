@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <span class="title"><h1>{% block title %} Reports {% endblock %}</h1></span>
+    <br>
+    <div class="content">
+        Total amount Ksh. {{total}} 
+        <br>
+        Total Members: {{ members }}
+    </div>
+    <a href="{{ url_for('register.index')}}"><button>Exit</button></a>
+{% endblock %}

@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head><title>Create</title></head>
-    <body>
-    <h1 style="width: 100%">{% block title %} Add a New Wife {% endblock %}</h1>
+    <head><title>Edit wife</title></head>
+        <body><h1 style="width: 100%">
+        {% block title %} Edit Details 
+        {% endblock %}
+    </h1>
+    
+    
     <form method="post">
         <p>
             <label for="firstname">First Name</label>
             <input type="text" name="firstname"
-                   placeholder="First Name">
+                   value="{{ wife.firstname }}"
+                   placeholder="First name">
             </input>
         </p>
-
+        
         <p>
             <label for="lastname">Last Name</label>
             <input type="text" name="lastname"
-                   placeholder="Last Name">
+                   value="{{ wife.lastname }}"
+                   placeholder="Last name">
             </input>
         </p>
 
         <p>
             <label for="date_of_birth">Date of firth</label>
             <input type="date" name="date_of_birth"
+                    value="{{ wife.date_of_birth}}"
                    placeholder="Date of birth">
             </input>
         </p>
 
         <p>
-            <!-- <button type="submit" href="{{url_for('register.index')}}">Save and close </button> -->
-            <button type="submit">Save and Continue</button>
+            <button type="submit">Edit</button>
             
-            <button><a href="{{url_for('family.index')}}">cancel</a></button>
+            <button><a href="{{url_for('family.family', depo_id = register.id)}}">cancel</a></button>
         </p>
     </form>
     </body>
-
 </html>

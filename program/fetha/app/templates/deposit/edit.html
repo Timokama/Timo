@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="width: 100%">
+        {% block title %} Edit amount
+        {% endblock title  %}
+    </h1>
+    <body>
+        <form method="post">
+        <p>
+            <label for="amount">Ksh:</label>
+            <input type="number" name="amount"
+                   value="{{ deposit.amount }}"
+                   placeholder="Ksh.">
+            </input>
+        </p>
+        <p>
+            <button type="submit">Edit</button>
+            
+            <button><a href="{{url_for('deposit.index')}}">cancel</a></button>
+        </p>
+    </form>
+    </body>
+    {% endblock %}

@@ -2,7 +2,7 @@
 <html>
     <head><title>Create</title></head>
     <body>
-    <h1 style="width: 100%">{% block title %} Add a New Wife {% endblock %}</h1>
+    <h1 style="width: 100%">{% block title %} Add a New Child {% endblock %}</h1>
     <form method="post">
         <p>
             <label for="firstname">First Name</label>
@@ -29,7 +29,7 @@
             <!-- <button type="submit" href="{{url_for('register.index')}}">Save and close </button> -->
             <button type="submit">Save and Continue</button>
             
-            <button><a href="{{url_for('family.index')}}">cancel</a></button>
+            <button><a href="{{url_for('register.index')}}">cancel</a></button>
         </p>
     </form>
     </body>

@@ -2,8 +2,6 @@ from app.extensions import db
 from datetime import date
 from sqlalchemy.sql import func
 
-# from app.models.deposit import Deposit
-
 class Wife(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(100), nullable=False)
@@ -13,7 +11,11 @@ class Wife(db.Model):
     child = db.relationship('Child', backref='wife')
     register_id = db.Column(db.Integer, db.ForeignKey('register.id'))
     
-    
+    # def __init__(self, firstname, lastname, date_of_birth: date, register):
+    #     self.firstname = firstname
+    #     self.lastname = lastname
+    #     self.date_of_birth= date_of_birth
+    #     self.register = register
     
     def __repr__(self):
         return f'<Member {self.firstname}>'

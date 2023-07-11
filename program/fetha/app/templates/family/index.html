@@ -3,8 +3,8 @@
 {% block content %}
 <span class="title"><h1>{% block title %} Family {% endblock %}</h1></span>
 <div class="content">
-    <a href="{{url_for('register.create')}}">Create new Member</a>
-        <h2>Farther</h2>
+    <a href="{{url_for('register.create')}}"><button>Create new Member</button></a>
+        <h2>Member</h2>
             <div class="title">
             {% for money in family %}
             <p>{{ money.id }}</p>

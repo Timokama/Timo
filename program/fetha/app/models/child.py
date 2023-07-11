@@ -11,7 +11,14 @@ class Child(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     
     family_id = db.Column(db.Integer, db.ForeignKey('wife.id'))
-    
+    register_id = db.Column(db.Integer, db.ForeignKey('register.id'))
+
+    # def __init__(self, firstname, lastname, date_of_birth: date, wife, child):
+    #     self.firstname = firstname
+    #     self.lastname = lastname
+    #     self.date_of_birth= date_of_birth
+    #     self.wife = wife
+    #     self.child = child
     def __repr__(self):
         return f'<Member {self.firstname}>'
 

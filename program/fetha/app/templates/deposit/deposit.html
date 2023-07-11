@@ -3,30 +3,23 @@
 {% block content %}
 <span class="title"><h1>{% block title %} The Details Page {% endblock %}</h1></span>
 <div class="content">
-        <h2>Members</h2>
             <div class="register">
             <p><b># {{ deposit.id }}</b></p>
-            {% for regst in deposit.family %}
+            <!-- {% for regst in deposit.family %} -->
             <p class="title">
-                {{ regst.firstname}} {{ regst.lastname }}
+                {{ register.firstname}} {{ register.lastname }}
                 <!-- <p>{{ regst.firstname}} {{ regst.lastname }}</p> -->
             </p>
             <div class="content">
-                Date of birth {{ regst.date_of_birth }}<br>
-                Date created: {{ regst.created_at }}<br>
-                {% endfor %}
+                Date of birth {{ register.date_of_birth }}<br>
+                Date created: {{ register.created_at }}<br>
+                <!-- {% endfor %} -->
                 <br>
-                Deposit: {{ deposit.amount }}<br>
+                Ksh. {{ deposit.amount }}<br>
+                <hr>
+                <a href="{{ url_for('register.edit', depo_id=deposit.id) }}"><button>Edit Amount</button></a>
             </div>
-            <hr>
-            <a href="{{ url_for('deposit.deposit', depo_id=deposit.id)}}"><button>Profile</button></a>
-            <a href="{{ url_for('register.create_wife', depo_id=deposit.id)}}"><button>New Wife</button></a>
-            <form method="POST"
-            action="{{ url_for('deposit.delete',
-                                depo_id=deposit.id) }}">
-            <input type="submit" value="Delete Member"
-                onclick="return confirm('Are you sure you want to delete this entry?')">
-            </form>
+            
             </div>
             
     </div>
