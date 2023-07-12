@@ -153,7 +153,7 @@ Then open a new __init__.py file inside the app directory:
 nano app/__init__.py
 Add the following code to it:
 
-flask_app/app/__init__.py
+fetha/app/__init__.py
 from flask import Flask
 
 from config import Config
@@ -173,7 +173,7 @@ def create_app(config_class=Config):
     return app
 Save and close the file.
 
-In this file, you import the Flask class from the flask package. Then you import the Config configuration class from the config.py file you created in the flask_app directory in the previous step.
+In this file, you import the Flask class from the flask package. Then you import the Config configuration class from the config.py file you created in the fetha directory in the previous step.
 
 The create_app() function is the Flask application factory function. It creates an application instance called app from the Flask() class using the familiar app = Flask(__name__) line. You configure the application by importing configuration values from an object using the app.config.from_object() method, passing it the value of the config_class parameter, which holds the Config class as a default value. You will initialize your Flask extensions below the # Initialize Flask extensions here comment and register your application blueprints below the # Register blueprints here comment once you create them.
 
@@ -209,7 +209,7 @@ In this step, you will create a blueprint for the main routes that will manage t
 At this point in the tutorial, your fetha directory structure is as follows (excluding the virtual environment’s directory):
 
 .
-├── flask_app
+├── fetha
     ├── app
     │   └── __init__.py
     └── config.py
@@ -229,7 +229,7 @@ nano app/main/__init__.py
 
 This is where you’ll create your main blueprint. Add the following code to this file:
 
-flask_app/app/main/__init__.py
+fetha/app/main/__init__.py
 from flask import Blueprint
 
 bp = Blueprint('main', __name__)
@@ -244,7 +244,7 @@ Next, you’ll create a routes.py file inside your main blueprint directory, whi
 nano app/main/routes.py
 You’ll create routes using the bp object. Add the following route inside the new file:
 
-flask_app/app/main/routes.py
+fetha/app/main/routes.py
 from app.main import bp
 
 
@@ -262,7 +262,7 @@ For Flask to use these routes and to make them importable directly from the blue
 nano app/main/__init__.py
 Add the highlighted import line at the end of the file:
 
-flask_app/app/main/__init__.py
+fetha/app/main/__init__.py
 from flask import Blueprint
 
 bp = Blueprint('main', __name__)
@@ -279,7 +279,7 @@ Open the app/__init__.py file to edit your factory function:
 nano app/__init__.py
 Edit the create_app() factory function to match the following block, adding the highlighted lines:
 
-flask_app/app/main/__init__.py
+fetha/app/main/__init__.py
 ...
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -312,7 +312,7 @@ Open the routes.py file of the main blueprint for modification:
 nano app/main/routes.py
 Edit the file with the highlighted lines:
 
-flask_app/app/main/routes.py
+fetha/app/main/routes.py
 from flask import render_template
 from app.main import bp
 
@@ -333,7 +333,7 @@ Open a new file called base.html to act as the base template:
 nano app/templates/base.html
 Add the following code to the new file:
 
-flask_app/app/templates/base.html
+fetha/app/templates/base.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -379,7 +379,7 @@ flask_app/app/templates/base.html
 
     </style>
 </head>
-<body>
+<!-- <body>
     <nav>
         <a href="{{ url_for('main.index') }}">FlaskApp</a>
         <a href="#">Posts</a>
@@ -390,7 +390,7 @@ flask_app/app/templates/base.html
     <div class="content">
         {% block content %} {% endblock %}
     </div>
-</body>
+</body> -->
 </html>
 Save and close the file.
 
@@ -405,7 +405,7 @@ Now, create the index.html file you rendered in the index() view function of the
 nano app/templates/index.html
 Add the following code to the newly created file:
 
-flask_app/app/templates/index.html
+fetha/app/templates/index.html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -416,7 +416,7 @@ flask_app/app/templates/index.html
 {% endblock %}
 Save and close the file.
 
-Here, you extend the base template. You replace the content block, using an <h1> heading that also serves as a title and an <h2> heading to indicate the index page is part of the main Flask blueprint.
+Here, you extend the base template. You replace the content block, using an <h1></h1> heading that also serves as a title and an <h2></h2> heading to indicate the index page is part of the main Flask blueprint.
 
 With the development server running, visit the index page using your browser or refresh it if it’s already open:
 
@@ -433,7 +433,7 @@ Now you’ll create the blueprint for blog posts, register it, and render its te
 At this point in the tutorial, your flask_app directory structure is as follows (excluding the virtual environment’s directory):
 
 .
-├── flask_app
+├── fetha
     ├── app
     │   ├── __init__.py
     │   ├── main
@@ -453,7 +453,7 @@ Next, open a new __init__.py file inside the new posts directory:
 nano app/posts/__init__.py
 Create a bp blueprint object and import the routes that you’ll create into the blueprint’s routes.py file:
 
-flask_app/app/posts/__init__.py
+fetha/app/posts/__init__.py
 from flask import Blueprint
 
 bp = Blueprint('posts', __name__)
@@ -469,7 +469,7 @@ Next, open the new routes.py file where you’ll put the routes for the posts bl
 nano app/posts/routes.py
 Add the following routes to this file:
 
-flask_app/app/posts/routes.py
+fetha/app/posts/routes.py
 from flask import render_template
 from app.posts import bp
 
@@ -496,7 +496,7 @@ Next, create the new index.html file inside the posts directory. This is the fil
 nano app/templates/posts/index.html
 Add the following code to the newly created file:
 
-flask_app/app/templates/posts/index.html
+fetha/app/templates/posts/index.html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -507,14 +507,14 @@ flask_app/app/templates/posts/index.html
 {% endblock %}
 Save and close the file.
 
-Here you extend the base template. You also set an <h1> heading as a title and an <h2> heading to mark the page as part of the posts blueprint.
+Here you extend the base template. You also set an <h1></h1> heading as a title and an <h2></h2> heading to mark the page as part of the posts blueprint.
 
 Next, create a new categories.html file inside the posts directory. This is the file you rendered in the categories() view function of the posts blueprint:
 
 nano app/templates/posts/categories.html
 Add the following code to the newly created file:
 
-flask_app/app/templates/posts/categories.html
+fetha/app/templates/posts/categories.html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -525,7 +525,7 @@ flask_app/app/templates/posts/categories.html
 {% endblock %}
 Save and close the file.
 
-You extend the base template and set an <h1> heading as a title and a <h2> heading to mark the page as part of the posts blueprint.
+You extend the base template and set an <h1></h1> heading as a title and a <h2></h2> heading to mark the page as part of the posts blueprint.
 
 You’ve created the posts blueprint, added routes, and made the rendered templates. You will now register this blueprint in your factory function for Flask to recognize it as part of the application.
 
@@ -534,7 +534,7 @@ Open the app/__init__.py file to edit your factory function:
 nano app/__init__.py
 Edit the create_app() factory function by adding the highlighted lines:
 
-flask_app/app/__init__.py
+fetha/app/__init__.py
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -571,7 +571,7 @@ To make the Posts and Categories links in the navigation bar functional, open th
 nano app/templates/base.html
 Modify the <nav> tag with the highlighted expressions:
 
-flask_app/app/templates/base.html
+fetha/app/templates/base.html
     <nav>
         <a href="{{ url_for('main.index') }}">FlaskApp</a>
         <a href="{{ url_for('posts.index') }}">Posts</a>
@@ -592,7 +592,7 @@ Now you’ll create the questions blueprint, register it, and render its templat
 At this point in the tutorial, your flask_app directory structure is as follows (excluding the virtual environment’s directory):
 
 .
-├── flask_app
+├── fetha
     ├── app
     │   ├── __init__.py
     │   ├── main
@@ -616,7 +616,7 @@ Next, open a new __init__.py file inside the new questions directory:
 nano app/questions/__init__.py
 Create a bp blueprint object and import the routes that you’ll later create in the blueprint’s routes.py file:
 
-flask_app/app/questions/__init__.py
+fetha/app/questions/__init__.py
 from flask import Blueprint
 
 bp = Blueprint('questions', __name__)
@@ -631,7 +631,7 @@ Next, open the new routes.py file where you’ll put the routes for the question
 nano app/questions/routes.py
 Add the following routes to this file:
 
-flask_app/app/questions/routes.py
+fetha/app/questions/routes.py
 from flask import render_template
 from app.questions import bp
 
@@ -648,7 +648,7 @@ mkdir app/templates/questions
 nano app/templates/questions/index.html
 Add the following code to the new file:
 
-flask_app/app/templates/questions/index.html
+fetha/app/templates/questions/index.html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -705,7 +705,7 @@ You will now make the Questions link functional. Open the base template to edit 
 nano app/templates/base.html
 Modify the <nav> tag with the highlighted expression:
 
-flask_app/app/templates/base.html
+fetha/app/templates/base.html
     <nav>
         <a href="{{ url_for('main.index') }}">FlaskApp</a>
         <a href="{{ url_for('posts.index') }}">Posts</a>
@@ -720,13 +720,13 @@ Refresh any page in your application to enable the Questions link functionality 
 
 You have created several blueprints to manage different components of your application. You registered the blueprints on your factory function and rendered templates for each route. Next, you’ll add Flask-SQLAlchemy to your application to manage and organize large databases in your Flask application.
 
-Step 5 — Adding Flask-SQLAlchemy Models to your Flask Application
+# Step 5 — Adding Flask-SQLAlchemy Models to your Flask Application
 In this step, you’ll integrate Flask-SQLAlchemy with your application, add a directory for database models, and create a model for posts and one for questions. You’ll insert a few blog posts into the posts table, then edit the posts’ index route to display all posts in the database. You will also insert a few questions and answers into the questions table to display them on the questions’ index page, alongside a new web form for adding further questions and answers to the database.
 
 At this point in the tutorial, your flask_app directory structure is as follows (excluding the virtual environment’s directory):
 
 .
-├── flask_app
+├── fetha
     ├── app
     │   ├── __init__.py
     │   ├── main
@@ -755,7 +755,7 @@ Open a new extensions.py file inside your app directory:
 nano app/extensions.py
 Add the following code to the newly created file:
 
-flask_app/app/extensions.py
+fetha/app/extensions.py
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 Save and close the file.
@@ -767,7 +767,7 @@ You will use this db object to integrate SQLAlchemy with the Flask application y
 nano app/__init__.py
 Edit the file to import and initialize the database object:
 
-flask_app/app/__init__.py
+fetha/app/__init__.py
 from flask import Flask
 
 from config import Config
@@ -800,7 +800,7 @@ Here, you import the db database object from the app.extensions module you creat
 Remember that you’ve configured Flask-SQLAlchemy using the Config object in the config.py file inside your flask_app directory. You can open this file for a quick reminder:
 
 nano config.py
-flask_app/config.py
+fetha/config.py
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -808,7 +808,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')\
-        or 'sqlite:///' + os.path.join(basedir, 'app.db')
+        or 'sqlite:///' + os.path.join(basedir, 'fetha.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 If you don’t set up a DATABASE_URI environment variable, the db object will, by default, connect to an SQLite file called app.db that will appear in your flask_app directory once you create your database tables. Close the file when finished reviewing it.
 
@@ -826,7 +826,7 @@ print(db)
 You’ll receive the path of your database, similar to the following:
 
 Output
-<SQLAlchemy engine=sqlite:///your_path_to_flask_app/app.db>
+<SQLAlchemy engine=sqlite:///your_path_to_flask_app/fetha.db>
 This output means that the db object was properly registered. If you get an error running the code in the Flask shell, ensure you’ve correctly registered the db object in your factory function before moving to the next section. You can exit the Flask shell by typing exit().
 
 Creating and Interacting with the Post Model
@@ -835,7 +835,7 @@ In large applications, you may have hundreds of database tables, which means you
 At this point in the tutorial, your flask_app directory structure is as follows (excluding the virtual environment’s directory):
 
 .
-├── flask_app
+├── fetha
     ├── app
     │   ├── extensions.py
     │   ├── __init__.py
@@ -865,7 +865,7 @@ Then, open a new file called post.py inside your models directory:
 nano app/models/post.py
 Add the following code to the newly created file:
 
-flask_app/app/models/post.py
+fetha/app/models/post.py
 from app.extensions import db
 
 class Post(db.Model):
@@ -958,7 +958,7 @@ Now that you have some sample posts in your table, you can display them on the p
 nano app/posts/routes.py
 Edit the imports and the index route by adding the highlighted lines:
 
-flask_app/app/posts/routes.py
+fetha/app/posts/routes.py
 from flask import render_template
 from app.posts import bp
 from app.extensions import db
@@ -978,7 +978,7 @@ Open the posts’ index template for modification to display the posts you passe
 nano app/templates/posts/index.html
 Edit the file by adding the highlighted lines:
 
-flask_app/app/templates/posts/index.html
+fetha/app/templates/posts/index.html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -1045,14 +1045,14 @@ At this point in the tutorial, your flask_app directory structure is as follows 
     │       │   └── index.html
     │       └── questions
     │           └── index.html
-    ├── app.db
+    ├── fetha.db
     └── config.py
 To create a questions database model, open a new file called question.py inside your models directory:
 
 nano app/models/question.py
 Add the following code:
 
-flask_app/app/models/question.py
+fetha/app/models/question.py
 from app.extensions import db
 
 class Question(db.Model):
@@ -1091,7 +1091,7 @@ You can now interact with the new questions model in your questions blueprint. T
 nano app/questions/routes.py
 Edit the file by adding the highlighted lines:
 
-flask_app/app/questions/routes.py
+fetha/app/questions/routes.py
 from flask import render_template
 from app.questions import bp
 from app.models.question import Question
@@ -1109,7 +1109,7 @@ Next, you’ll display the questions you passed to the questions’ index templa
 nano app/templates/questions/index.html
 Edit the file by adding the highlighted lines:
 
-flask_app/app/templates/questions/index.html
+fetha/app/templates/questions/index.html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -1168,7 +1168,7 @@ Open the questions blueprint’s routes.py file:
 nano app/questions/routes.py
 Edit the file by adding the highlighted lines:
 
-flask_app/app/questions/routes.py
+fetha/app/questions/routes.py
 from flask import render_template, request, url_for, redirect
 from app.questions import bp
 from app.models.question import Question
