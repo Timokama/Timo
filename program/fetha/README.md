@@ -1022,7 +1022,7 @@ You’ve created a posts model and interacted with it in your posts blueprint. Y
 At this point in the tutorial, your flask_app directory structure is as follows (excluding the virtual environment’s directory):
 
 .
-├── flask_app
+├── fetha
     ├── app
     │   ├── extensions.py
     │   ├── __init__.py
